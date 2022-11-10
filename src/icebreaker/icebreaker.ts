@@ -4,9 +4,10 @@ import { classifyVectors, kmodes } from "../../index";
 import { getDistancesBetweenModes, getDistancesInCluster } from "../validation";
 
 
-const votesFile: string[][] = R.dropLast(1, parseCsvFile('/home/ubuntu/projects/kmodes/src/example/house-votes-84.data'));
+const votesFile: string[][] = R.dropLast(1, parseCsvFile('/home/ubuntu/projects/kmodes/src/icebreaker/kontrolna2.csv'));
 
-const fullRecords = votesFile.filter(f => !f.some(item => item === '?'));
+// const fullRecords = votesFile.filter(f => !f.some(item => item === '?'));
+const fullRecords = votesFile;
 
 const kmodesResult = kmodes(fullRecords, 2, 10, 20, R.drop(1), true);
 
@@ -15,10 +16,10 @@ const kmodesResult = kmodes(fullRecords, 2, 10, 20, R.drop(1), true);
 console.log('Classified vectors: ');
 classifyVectors(fullRecords, kmodesResult.best.clusters, R.drop(1)).forEach(v => console.log(JSON.stringify(v)));
 
-console.log('Democrats in cluster 0: ' + kmodesResult.best.clusters[0].vectors.filter(fr => fr[0] === 'democrat').length);
-console.log('Democrats in cluster 1: ' + kmodesResult.best.clusters[1].vectors.filter(fr => fr[0] === 'democrat').length);
-console.log('Republicans in cluster 0: ' + kmodesResult.best.clusters[0].vectors.filter(fr => fr[0] === 'republican').length);
-console.log('Republicans in cluster 1: ' + kmodesResult.best.clusters[1].vectors.filter(fr => fr[0] === 'republican').length);
+// console.log('Democrats in cluster 0: ' + kmodesResult.best.clusters[0].vectors.filter(fr => fr[0] === 'democrat').length);
+// console.log('Democrats in cluster 1: ' + kmodesResult.best.clusters[1].vectors.filter(fr => fr[0] === 'democrat').length);
+// console.log('Republicans in cluster 0: ' + kmodesResult.best.clusters[0].vectors.filter(fr => fr[0] === 'republican').length);
+// console.log('Republicans in cluster 1: ' + kmodesResult.best.clusters[1].vectors.filter(fr => fr[0] === 'republican').length);
 
 console.log(kmodesResult.validation)
 /*
